@@ -1,0 +1,30 @@
+<body>
+  <div class="container">
+    <header>
+      <h1 class="text-center">Slang Bucket</h1>
+    </header>
+
+    <div class="col-sm-12">
+
+      {{> loginButtons}}
+
+      {{#if currentUser}}
+      <form class="new-slang">
+        <div class="form-group">
+          <input type="text" name="slang" class="form-control" placeholder="Add new slangs" required="required" />
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" name="definition" placeholder="Add new slang definitions" required></textarea>
+        </div>
+         <div class="form-group">
+          <input class="btn btn-small btn-info" type="submit" value="Add New Slang" />
+        </div>
+      </form>
+      {{/if}}
+
+      {{#each slangs}}
+        {{> slang}}
+      {{/each}}
+    </div>
+  </div>
+</body>
