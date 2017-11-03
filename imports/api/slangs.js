@@ -4,6 +4,13 @@ import { check } from 'meteor/check';
 
 export const Slangs = new Mongo.Collection('slangs');
 
+if (Meteor.isServer) {
+  // This code only runs on the server
+  Meteor.publish('slangs', function tasksPublication() {
+    return Slangs.find();
+  });
+}
+
 Meteor.methods({
   'slangs.insert'(slang, definition) {
     check(slang, String);

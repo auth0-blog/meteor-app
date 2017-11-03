@@ -6,6 +6,10 @@ import { Slangs } from '../api/slangs.js';
 import './slang.js';
 import './body.html';
 
+Template.body.onCreated(function bodyOnCreated() {
+  Meteor.subscribe('slangs');
+});
+
 Template.body.helpers({
   slangs() {
     return Slangs.find({}, { sort: { createdAt: -1 } });
