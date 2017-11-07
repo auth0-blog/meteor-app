@@ -1,10 +1,16 @@
 import { Meteor } from 'meteor/meteor';
+import Auth0Lock from 'auth0-lock';
+import { lock } from 'xcv58:auth0-lock';
+import auth0 from 'auth0-js';
 import { Template } from 'meteor/templating';
 
 import { Slangs } from '../api/slangs.js';
 
 import './slang.js';
 import './body.html';
+
+
+console.log(lock);
 
 Template.body.onCreated(function bodyOnCreated() {
   Meteor.subscribe('slangs');
@@ -33,4 +39,10 @@ Template.body.events({
     target.slang.value = '';
     target.definition.value = '';
   },
+  'click button.login'(event) {
+     Lock.show();
+  },
+  'click button.logout'(event) {
+      Meteor.logout();
+  }
 });
