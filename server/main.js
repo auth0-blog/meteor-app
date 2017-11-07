@@ -11,8 +11,8 @@ Meteor.startup(() => {
 const app = express();
 WebApp.connectHandlers.use(app);
 
-var authCheck = jwt({
-  secret: jwks.expressJwtSecret({
+const authCheck = jwt({
+  secret: expressJwtSecret({
         cache: true,
         rateLimit: true,
         jwksRequestsPerMinute: 5,
@@ -25,13 +25,8 @@ var authCheck = jwt({
     algorithms: ['RS256']
 });
 
-app.get('/api/slangs', (req, res) => {
-  var slangs = Slangs.find().fetch();
-  res.status(200).json({ message: slangs });
-});
-
 app.get('/api/slangs', authCheck, (req, res) => {
-  var slangs = Slangs.find().fetch();
+  const slangs = Slangs.find().fetch();
   res.status(200).json({ message: slangs });
 });
 

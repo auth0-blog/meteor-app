@@ -6,17 +6,9 @@
 
     <div class="col-sm-12">
 
-      {{!-- {{> loginButtons}} --}}
+      {{> loginButtons}}
 
       {{#if currentUser}}
-        <div>Your name is: <b>{{currentUser.services.auth0.name}}</b></div>
-        <button class="logout btn btn-info">Log Out</button>
-      {{else}}
-        <button class="login btn btn-info">Log In</button>
-      {{/if}}
-
-
-      {{!-- {{#if currentUser}} --}}
       <form class="new-slang">
         <div class="form-group">
           <input type="text" name="slang" class="form-control" placeholder="Add new slangs" required="required" />
@@ -28,7 +20,7 @@
           <input class="btn btn-small btn-info" type="submit" value="Add New Slang" />
         </div>
       </form>
-      {{!-- {{/if}} --}}
+      {{/if}}
 
       {{#each slangs}}
         {{> slang}}
