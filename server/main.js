@@ -25,8 +25,8 @@ const authCheck = jwt({
     algorithms: ['RS256']
 });
 
-app.get('/api/slangs', authCheck, (req, res) => {
+app.get('/api/slangs', authCheck, Meteor.bindEnvironment(function(req, res) {
   const slangs = Slangs.find().fetch();
   res.status(200).json({ message: slangs });
-});
+}));
 
